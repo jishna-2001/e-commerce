@@ -53,7 +53,7 @@ function SignIn() {
   return (
     <div
       style={{
-        backgroundColor: "#f6f0e9", // Soft beige for background
+        backgroundColor: "#f6f0e9",
         minHeight: "100vh",
         fontFamily: "serif",
       }}
@@ -73,13 +73,13 @@ function SignIn() {
             padding: "40px",
             borderRadius: "20px",
             backgroundColor: "#fff",
-            width: "500px", // Fixed width for uniformity
+            width: "500px",
           }}
         >
           <h1
             style={{
               textAlign: "center",
-              color: "#1f2a44", // Deep navy blue for heading
+              color: "#1f2a44",
               marginBottom: "20px",
             }}
           >
@@ -138,20 +138,16 @@ function SignIn() {
             <Button
               type="submit"
               style={{
-                width: "100%", // Full width button
-                backgroundColor: "#1f2a44", // Deep navy blue
+                width: "100%",
+                backgroundColor: "#1f2a44",
                 color: "white",
                 border: "none",
                 height: "45px",
                 borderRadius: "10px",
                 transition: "background-color 0.3s",
               }}
-              onMouseOver={
-                (e) => (e.target.style.backgroundColor = "#2e3a57") // Darker navy on hover
-              }
-              onMouseOut={
-                (e) => (e.target.style.backgroundColor = "#1f2a44") // Reset to original navy
-              }
+              onMouseOver={(e) => (e.target.style.backgroundColor = "#2e3a57")}
+              onMouseOut={(e) => (e.target.style.backgroundColor = "#1f2a44")}
             >
               Sign In
             </Button>

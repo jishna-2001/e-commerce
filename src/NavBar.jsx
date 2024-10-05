@@ -7,7 +7,6 @@ import { GrCart } from "react-icons/gr";
 function NavBar() {
   return (
     <div>
-      {/* Sale Announcement Banner */}
       <div
         style={{
           height: "50px",
@@ -23,15 +22,13 @@ function NavBar() {
         Get 25% Off This Summer Sale. Grab It Fast!!
       </div>
 
-      {/* Main Navbar */}
       <Navbar
         expand="lg"
         style={{
-          backgroundColor: "#f6f0e9", // Lighter background
+          backgroundColor: "#f6f0e9",
         }}
       >
         <Container>
-          {/* Brand Logo */}
           <Navbar.Brand
             as={Link}
             to="/"
@@ -49,7 +46,6 @@ function NavBar() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto" style={{ alignItems: "center" }}>
-              {/* Sign In Button */}
               <Link
                 to={"/signin"}
                 style={{
@@ -75,7 +71,6 @@ function NavBar() {
                 Sign In
               </Link>
 
-              {/* Log In Button */}
               <Link
                 to={"/login"}
                 style={{

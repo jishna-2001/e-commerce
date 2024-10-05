@@ -19,7 +19,6 @@ function NewNavbar() {
 
   return (
     <div style={{ fontFamily: "'Playfair Display', serif" }}>
-      {/* Promo Banner */}
       <div
         style={{
           height: "50px",
@@ -34,7 +33,6 @@ function NewNavbar() {
         Get 25% Off This Summer Sale. Grab It Fast!!
       </div>
 
-      {/* Navbar */}
       <Navbar
         expand="lg"
         style={{
@@ -43,7 +41,6 @@ function NewNavbar() {
         }}
       >
         <Container>
-          {/* Brand (Centered Heading) */}
           <Navbar.Brand
             href="#home"
             className="mx-auto"
@@ -51,12 +48,12 @@ function NewNavbar() {
               fontSize: "3rem",
               fontWeight: "bold",
               color: "#1f2a44",
-              fontFamily: "Georgia, serif", // System serif font applied
+              fontFamily: "Georgia, serif",
               letterSpacing: "2px",
               textAlign: "center",
-              position: "absolute", // Absolute positioning ensures it's centered
+              position: "absolute",
               left: "50%",
-              transform: "translateX(-50%)", // Horizontal centering
+              transform: "translateX(-50%)",
             }}
           >
             ShopEase
@@ -64,7 +61,6 @@ function NewNavbar() {
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
-          {/* Right-aligned Log Out and Cart */}
           <Navbar.Collapse
             id="basic-navbar-nav"
             className="justify-content-end"
@@ -84,7 +80,7 @@ function NewNavbar() {
                       position: "absolute",
                       top: "-10px",
                       right: "-10px",
-                      backgroundColor: "#d9534f", // Red badge for cart count
+                      backgroundColor: "#d9534f",
                       color: "white",
                       borderRadius: "50%",
                       padding: "3px 7px",
@@ -96,7 +92,6 @@ function NewNavbar() {
                 )}
               </Link>
 
-              {/* Log Out Button */}
               <Link
                 to="/home"
                 style={{
@@ -105,8 +100,8 @@ function NewNavbar() {
                   padding: "0.5rem 1.5rem",
                   fontSize: "1.1rem",
                   textDecoration: "none",
-                  borderRadius: "22px", // Increased border radius
-                  border: "2px solid black", // Thin black border
+                  borderRadius: "22px",
+                  border: "2px solid black",
                   transition: "all 0.3s ease",
                   marginLeft: "20px",
                 }}

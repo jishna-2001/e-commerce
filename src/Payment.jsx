@@ -13,11 +13,9 @@ function Payment() {
   const handlePlaceOrder = () => {
     setOrderPlaced(true);
 
-    // Simulate a delay to show the confirmation message
     setTimeout(() => {
-      // Redirect to the service page after 2 seconds
       navigate("/service");
-    }, 2000); // 2-second delay before redirect
+    }, 2000);
   };
 
   return (
@@ -26,7 +24,7 @@ function Payment() {
         backgroundColor: "#f6f0e9",
         height: "100vh",
         display: "flex",
-        justifyContent: "center", // Center horizontally
+        justifyContent: "center",
         alignItems: "center",
       }}
     >
@@ -34,11 +32,10 @@ function Payment() {
         style={{
           padding: "40px 20px",
           maxWidth: "500px",
-          width: "100%", // Ensure the card is responsive
+          width: "100%",
           fontFamily: "'Poppins', sans-serif",
         }}
       >
-        {/* Payment Card */}
         <Card
           style={{
             boxShadow: "0 4px 15px rgba(0, 0, 0, 0.2)",
@@ -59,7 +56,6 @@ function Payment() {
             Select Payment Method
           </h2>
 
-          {/* Payment Form */}
           <Form>
             <Form.Group controlId="paymentMethod">
               <Form.Check
@@ -80,7 +76,6 @@ function Payment() {
             </Form.Group>
           </Form>
 
-          {/* Place Order Button */}
           {!orderPlaced ? (
             <div style={{ textAlign: "center", marginTop: "40px" }}>
               <Button
@@ -105,7 +100,6 @@ function Payment() {
               </Button>
             </div>
           ) : (
-            // Order Confirmation Message
             <div
               style={{
                 textAlign: "center",

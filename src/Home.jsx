@@ -5,14 +5,13 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <div>
-      {/* Hero Section */}
       <div
         style={{
           height: "100vh",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "#f6f0e9", // Soft beige for background
+          backgroundColor: "#f6f0e9",
           fontFamily: "serif",
         }}
       >
@@ -27,7 +26,6 @@ function Home() {
             backgroundColor: "#fff",
           }}
         >
-          {/* Left Text Section */}
           <div
             style={{
               flex: 1,
@@ -37,7 +35,7 @@ function Home() {
               justifyContent: "center",
               alignItems: "center",
               padding: "40px",
-              color: "#1f2a44", // Deep navy blue for text
+              color: "#1f2a44",
             }}
           >
             <h2
@@ -47,7 +45,7 @@ function Home() {
                 lineHeight: "1.1",
                 textAlign: "center",
                 fontWeight: "bold",
-                color: "#1f2a44", // Deep navy blue for title
+                color: "#1f2a44",
               }}
             >
               Discover <br /> The <br />
@@ -58,9 +56,9 @@ function Home() {
               <Button
                 style={{
                   width: "180px",
-                  backgroundColor: "#1f2a44", // Deep navy for button
-                  color: "#f0c987", // Gold text color for button
-                  border: "2px solid ", // Gold border
+                  backgroundColor: "#1f2a44",
+                  color: "#f0c987",
+                  border: "2px solid ",
                   padding: "12px 30px",
                   fontSize: "18px",
                   borderRadius: "25px",
@@ -85,7 +83,7 @@ function Home() {
                 left: 0,
                 width: "100%",
                 height: "100%",
-                backgroundColor: "rgba(0, 0, 0, 0.3)", // Adding a dark overlay for a more dramatic effect
+                backgroundColor: "rgba(0, 0, 0, 0.3)",
               }}
             ></div>
             <img
@@ -107,14 +105,14 @@ function Home() {
           textAlign: "center",
           fontFamily: "serif",
           padding: "60px 20px",
-          color: "#1f2a44", // Navy blue for text
+          color: "#1f2a44",
         }}
       >
         <h1
           style={{
             fontSize: "3rem",
             fontWeight: "bold",
-            color: "#1f2a44", // Navy blue for the heading
+            color: "#1f2a44",
             marginBottom: "1rem",
             textTransform: "uppercase",
           }}
@@ -127,7 +125,7 @@ function Home() {
             margin: "0 auto",
             fontSize: "1.25rem",
             lineHeight: "1.8",
-            color: "#6e6e6e", // Muted gray for body text
+            color: "#6e6e6e",
           }}
         >
           At <strong style={{ color: "#f0c987" }}>Shopper</strong>, we believe
@@ -141,8 +139,8 @@ function Home() {
       </div>
       <footer
         style={{
-          backgroundColor: "#1f2a44", // Deep navy blue
-          color: "#f0c987", // Gold text color
+          backgroundColor: "#1f2a44",
+          color: "#f0c987",
           padding: "40px 20px",
           textAlign: "center",
           fontFamily: "serif",

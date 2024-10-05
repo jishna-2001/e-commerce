@@ -35,7 +35,7 @@ function Login() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log("User logged in successfully");
-      window.location.href = "/home";
+      window.location.href = "/service";
       toast.success("User logged in Successfully", { position: "top-center" });
     } catch (error) {
       console.log(error.message);
@@ -109,20 +109,16 @@ function Login() {
             <Button
               type="submit"
               style={{
-                width: "100%", // Full width button
-                backgroundColor: "#1f2a44", // Deep navy blue
+                width: "100%",
+                backgroundColor: "#1f2a44",
                 color: "white",
                 border: "none",
                 height: "45px",
                 borderRadius: "10px",
                 transition: "background-color 0.3s",
               }}
-              onMouseOver={
-                (e) => (e.target.style.backgroundColor = "#2e3a57") // Darker navy on hover
-              }
-              onMouseOut={
-                (e) => (e.target.style.backgroundColor = "#1f2a44") // Reset to original navy
-              }
+              onMouseOver={(e) => (e.target.style.backgroundColor = "#2e3a57")}
+              onMouseOut={(e) => (e.target.style.backgroundColor = "#1f2a44")}
             >
               Login
             </Button>
@@ -133,7 +129,7 @@ function Login() {
             <Link
               to="/signin"
               style={{
-                color: "#1f2a44", // Deep navy blue for link
+                color: "#1f2a44",
                 textDecoration: "none",
               }}
             >

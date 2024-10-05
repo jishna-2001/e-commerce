@@ -17,18 +17,15 @@ function ServicePage() {
     setitemId,
   } = useContext(exampleContext);
 
-  // Set navbar states
   setshownewnav(true);
   setshownav(false);
   setshowhome(false);
 
-  // Function to get item id
   const getItem_id = (id) => {
     console.log(id);
     setitemId(id);
   };
 
-  // Fetch products from the API when the component mounts
   useEffect(() => {
     axios
       .get("https://fakestoreapiserver.reactbd.com/amazonproducts")
@@ -40,7 +37,7 @@ function ServicePage() {
   const [sortOrder, setSortOrder] = useState(null);
 
   useEffect(() => {
-    let filtered = [...products]; // Spread products into a new array to avoid mutation
+    let filtered = [...products];
 
     // Filter based on the selected category
     if (selectedCategory !== "All") {
@@ -52,22 +49,20 @@ function ServicePage() {
 
     // Sort products based on the selected sort order
     if (sortOrder === "lowToHigh") {
-      filtered = filtered.sort((a, b) => a.price - b.price); // Sort from low to high
+      filtered = filtered.sort((a, b) => a.price - b.price);
     } else if (sortOrder === "highToLow") {
-      filtered = filtered.sort((a, b) => b.price - a.price); // Sort from high to low
+      filtered = filtered.sort((a, b) => b.price - a.price);
     }
 
-    setfilteredProducts(filtered); // Apply the filtered and sorted products
+    setfilteredProducts(filtered);
   }, [selectedCategory, sortOrder, products]);
 
-  // Handlers to set category filters
   const showAll = () => setselectedCategory("All");
   const showMen = () => setselectedCategory("Men's Clothing");
   const showWomen = () => setselectedCategory("Women's Clothing");
   const showJewelery = () => setselectedCategory("Jewelery");
   const showElectronics = () => setselectedCategory("Electronics");
 
-  // Handlers to sort by price
   const handleSortLowToHigh = () => {
     setSortOrder("lowToHigh");
   };
@@ -98,7 +93,7 @@ function ServicePage() {
           fontFamily: "serif",
           marginTop: "50px",
           display: "flex",
-          justifyContent: "center", // Center the buttons horizontally
+          justifyContent: "center",
           alignItems: "center",
         }}
       >
@@ -175,8 +170,8 @@ function ServicePage() {
       <div
         style={{
           display: "flex",
-          justifyContent: "center", // Center the dropdown
-          marginTop: "20px", // Add some margin to separate it from the category buttons
+          justifyContent: "center",
+          marginTop: "20px",
         }}
       >
         <Dropdown>
@@ -221,7 +216,7 @@ function ServicePage() {
             <Card
               style={{ width: "18rem", margin: "8px" }}
               onClick={() => getItem_id(item.id)}
-              key={item.id} // Add a unique key for each item
+              key={item.id}
             >
               <Card.Img
                 variant="top"
