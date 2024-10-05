@@ -35,7 +35,7 @@ function Login() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log("User logged in successfully");
-      window.location.href = "/service";
+      window.location.href = "/home";
       toast.success("User logged in Successfully", { position: "top-center" });
     } catch (error) {
       console.log(error.message);
