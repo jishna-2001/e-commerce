@@ -80,6 +80,7 @@ function ServicePage() {
         Find everything you need to look and feel your best, and shop the latest
         fashion and lifestyle products
       </div>
+      {/* category-wise listing */}
       <div
         style={{
           width: "100%",
@@ -164,7 +165,7 @@ function ServicePage() {
         className="d-flex justify-content-center align-items-center mb-4"
         style={{ marginTop: "40px" }}
       >
-        {/* Sorting */}
+        {/* Sorting based on price*/}
         <Dropdown>
           <Dropdown.Toggle variant="outline-dark" className="mx-2">
             Sort by Price

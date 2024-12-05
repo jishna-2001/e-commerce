@@ -26,6 +26,7 @@ function App() {
   const [cart, setCart] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [orderConfirmed, setOrderConfirmed] = useState(false);
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -53,6 +54,8 @@ function App() {
           setSearchQuery,
           searchResults,
           setSearchResults,
+          orderConfirmed,
+          setOrderConfirmed,
         }}
       >
         <BrowserRouter>

@@ -4,18 +4,29 @@ import { useNavigate } from "react-router-dom";
 import { exampleContext } from "./App";
 
 function Payment() {
-  const { setshownav, setshownewnav } = useContext(exampleContext);
+  const { setshownav, setshownewnav, setCart } = useContext(exampleContext); // Destructure setCart
   setshownav(false);
   setshownewnav(false);
+
   const [orderPlaced, setOrderPlaced] = useState(false);
+  const [thankYouMessageVisible, setThankYouMessageVisible] = useState(false);
   const navigate = useNavigate();
 
   const handlePlaceOrder = () => {
     setOrderPlaced(true);
 
+    // Empty the cart after order is placed
+    setCart([]);
+
+    // Show thank you message after a short delay
+    setTimeout(() => {
+      setThankYouMessageVisible(true);
+    }, 1000);
+
+    // Redirect to service page
     setTimeout(() => {
       navigate("/service");
-    }, 2000);
+    }, 3000);
   };
 
   return (
@@ -112,7 +123,12 @@ function Payment() {
                 transition: "opacity 0.5s ease",
               }}
             >
-              Your order has been placed!
+              {thankYouMessageVisible && (
+                <div>
+                  <h3>Thank you for your order!</h3>
+                  <p>Your order has been placed successfully.</p>
+                </div>
+              )}
             </div>
           )}
         </Card>
