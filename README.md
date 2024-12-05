@@ -1,3 +1,27 @@
+E-Commerce Website
+
+This is a React-based e-commerce website that allows users to browse products, add items to their cart, and place orders. It is built using React, React Router for navigation, and React Bootstrap for the UI components.
+
+Installing
+
+# Clone the repository to your local machine:
+
+git clone https://github.com/jishna-2001/e-commerce
+
+# Navigate to the project directory:
+
+cd my-app
+
+# Install dependencies:
+
+npm install
+
+# Run the development server:
+
+npm start
+
+This will open the application in your browser at http://localhost:3000.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
