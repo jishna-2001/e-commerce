@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { GrCart } from "react-icons/gr";
+
 import { Link } from "react-router-dom";
 import { auth } from "./Firebase";
 import { exampleContext } from "./App";
 
 function NewNavbar() {
   const { cart } = useContext(exampleContext);
+
   async function handleLogout() {
     try {
       await auth.signOut();
@@ -65,7 +67,7 @@ function NewNavbar() {
             id="basic-navbar-nav"
             className="justify-content-end"
           >
-            <Nav className="ml-auto">
+            <Nav className="ml-auto" style={{ alignItems: "center" }}>
               <Link to="/cart" style={{ position: "relative" }}>
                 <GrCart
                   style={{

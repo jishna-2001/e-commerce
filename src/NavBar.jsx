@@ -19,7 +19,7 @@ function NavBar() {
           letterSpacing: "1px",
         }}
       >
-        Get 25% Off This Summer Sale. Grab It Fast!!
+        Get 25% Off This End of Season Sale. Grab It Fast!!
       </div>
 
       <Navbar

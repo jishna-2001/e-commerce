@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Card, Dropdown } from "react-bootstrap";
+import { Button, Card, Dropdown, InputGroup, Form } from "react-bootstrap";
 import { exampleContext } from "./App";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { IoSearch } from "react-icons/io5";
 
 function ServicePage() {
   const {
@@ -15,60 +16,52 @@ function ServicePage() {
     showhome,
     setshowhome,
     setitemId,
+    searchQuery,
+    setSearchQuery,
   } = useContext(exampleContext);
 
-  setshownewnav(true);
-  setshownav(false);
-  setshowhome(false);
+  // Update navigation visibility states
+  useEffect(() => {
+    setshownewnav(true);
+    setshownav(false);
+    setshowhome(false);
+  }, [setshownewnav, setshownav, setshowhome]);
 
-  const getItem_id = (id) => {
-    console.log(id);
-    setitemId(id);
-  };
-
+  // Fetch products from the API
   useEffect(() => {
     axios
       .get("https://fakestoreapiserver.reactbd.com/amazonproducts")
       .then((res) => setproducts(res.data));
   }, [setproducts]);
 
-  const [filteredProducts, setfilteredProducts] = useState(products);
   const [selectedCategory, setselectedCategory] = useState("All");
   const [sortOrder, setSortOrder] = useState(null);
 
-  useEffect(() => {
-    let filtered = [...products];
-
-    // Filter based on the selected category
-    if (selectedCategory !== "All") {
-      filtered = filtered.filter(
-        (product) =>
-          product.category.toLowerCase() === selectedCategory.toLowerCase()
-      );
-    }
-
-    // Sort products based on the selected sort order
-    if (sortOrder === "lowToHigh") {
-      filtered = filtered.sort((a, b) => a.price - b.price);
-    } else if (sortOrder === "highToLow") {
-      filtered = filtered.sort((a, b) => b.price - a.price);
-    }
-
-    setfilteredProducts(filtered);
-  }, [selectedCategory, sortOrder, products]);
-
-  const showAll = () => setselectedCategory("All");
-  const showMen = () => setselectedCategory("Men's Clothing");
-  const showWomen = () => setselectedCategory("Women's Clothing");
-  const showJewelery = () => setselectedCategory("Jewelery");
-  const showElectronics = () => setselectedCategory("Electronics");
-
-  const handleSortLowToHigh = () => {
-    setSortOrder("lowToHigh");
+  const getItem_id = (id) => {
+    setitemId(id);
   };
 
-  const handleSortHighToLow = () => {
-    setSortOrder("highToLow");
+  // Filter products based on search, category, and sort order
+  const filteredProducts = products
+    .filter((product) => {
+      if (selectedCategory !== "All") {
+        return (
+          product.category.toLowerCase() === selectedCategory.toLowerCase()
+        );
+      }
+      return true;
+    })
+    .filter((product) =>
+      product.title.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+    .sort((a, b) => {
+      if (sortOrder === "lowToHigh") return a.price - b.price;
+      if (sortOrder === "highToLow") return b.price - a.price;
+      return 0;
+    });
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
   };
 
   return (
@@ -101,12 +94,12 @@ function ServicePage() {
           style={{
             backgroundColor: selectedCategory === "All" ? "black" : "white",
             color: selectedCategory === "All" ? "white" : "black",
-            border: "solid #343a40 2px",
-            borderRadius: "25px",
+            border: "solid #343a40 1px",
+            borderRadius: "5px",
             padding: "10px 20px",
             marginRight: "10px",
           }}
-          onClick={showAll}
+          onClick={() => setselectedCategory("All")}
         >
           All
         </Button>
@@ -115,12 +108,12 @@ function ServicePage() {
             backgroundColor:
               selectedCategory === "Men's Clothing" ? "black" : "white",
             color: selectedCategory === "Men's Clothing" ? "white" : "black",
-            border: "solid #343a40 2px",
-            borderRadius: "25px",
+            border: "solid #343a40 1px",
+            borderRadius: "5px",
             padding: "10px 20px",
             marginRight: "10px",
           }}
-          onClick={showMen}
+          onClick={() => setselectedCategory("Men's Clothing")}
         >
           Men
         </Button>
@@ -129,12 +122,12 @@ function ServicePage() {
             backgroundColor:
               selectedCategory === "Women's Clothing" ? "black" : "white",
             color: selectedCategory === "Women's Clothing" ? "white" : "black",
-            border: "solid #343a40 2px",
-            borderRadius: "25px",
+            border: "solid #343a40 1px",
+            borderRadius: "5px",
             padding: "10px 20px",
             marginRight: "10px",
           }}
-          onClick={showWomen}
+          onClick={() => setselectedCategory("Women's Clothing")}
         >
           Women
         </Button>
@@ -143,12 +136,12 @@ function ServicePage() {
             backgroundColor:
               selectedCategory === "Jewelery" ? "black" : "white",
             color: selectedCategory === "Jewelery" ? "white" : "black",
-            border: "solid #343a40 2px",
-            borderRadius: "25px",
+            border: "solid #343a40 1px",
+            borderRadius: "5px",
             padding: "10px 20px",
             marginRight: "10px",
           }}
-          onClick={showJewelery}
+          onClick={() => setselectedCategory("Jewelery")}
         >
           Jewelery
         </Button>
@@ -157,97 +150,90 @@ function ServicePage() {
             backgroundColor:
               selectedCategory === "Electronics" ? "black" : "white",
             color: selectedCategory === "Electronics" ? "white" : "black",
-            border: "solid #343a40 2px",
-            borderRadius: "25px",
+            border: "solid #343a40 1px",
+            borderRadius: "5px",
             padding: "10px 20px",
             marginRight: "10px",
           }}
-          onClick={showElectronics}
+          onClick={() => setselectedCategory("Electronics")}
         >
           Electronics
         </Button>
       </div>
       <div
+        className="d-flex justify-content-center align-items-center mb-4"
+        style={{ marginTop: "40px" }}
+      >
+        {/* Sorting */}
+        <Dropdown>
+          <Dropdown.Toggle variant="outline-dark" className="mx-2">
+            Sort by Price
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={() => setSortOrder("lowToHigh")}>
+              Low to High
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => setSortOrder("highToLow")}>
+              High to Low
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+        {/* Search operation */}
+        <InputGroup style={{ maxWidth: "400px" }} className="mx-2">
+          <InputGroup.Text>
+            <IoSearch />
+          </InputGroup.Text>
+          <Form.Control
+            placeholder="Search products..."
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
+        </InputGroup>
+      </div>
+      {/* Displaying products */}
+      <div
+        className="row"
         style={{
           display: "flex",
           justifyContent: "center",
           marginTop: "20px",
         }}
       >
-        <Dropdown>
-          <Dropdown.Toggle
-            style={{
-              border: "solid #343a40 2px",
-              borderRadius: "25px",
-              padding: "10px 20px",
-              color: "black",
-              backgroundColor: "white",
-            }}
-            id="dropdown-basic"
-            onMouseOver={(e) => (
-              (e.target.style.backgroundColor = "black"),
-              (e.target.style.color = "white")
-            )}
-            onMouseOut={(e) => (
-              (e.target.style.backgroundColor = "white"),
-              (e.target.style.color = "black")
-            )}
+        {filteredProducts.map((item) => (
+          <Card
+            style={{ width: "18rem", margin: "8px" }}
+            onClick={() => getItem_id(item.id)}
+            key={item.id}
           >
-            Sort by Price
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu>
-            <Dropdown.Item onClick={handleSortLowToHigh}>
-              Low to High
-            </Dropdown.Item>
-            <Dropdown.Item onClick={handleSortHighToLow}>
-              High to Low
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-      </div>
-
-      <div
-        className="row"
-        style={{ display: "flex", justifyContent: "center" }}
-      >
-        {filteredProducts.map((item) => {
-          return (
-            <Card
-              style={{ width: "18rem", margin: "8px" }}
-              onClick={() => getItem_id(item.id)}
-              key={item.id}
+            <Card.Img
+              variant="top"
+              style={{
+                height: "220px",
+                padding: "15px",
+              }}
+              src={item.image}
+            />
+            <Link
+              to="/details"
+              style={{ textDecoration: "none", color: "black" }}
             >
-              <Card.Img
-                variant="top"
-                style={{
-                  height: "220px",
-                  padding: "15px",
-                }}
-                src={item.image}
-              />
-              <Link
-                to="/details"
-                style={{ textDecoration: "none", color: "black" }}
-              >
-                <Card.Body>
-                  <Card.Title
-                    style={{
-                      fontFamily: "serif",
-                      fontSize: "25px",
-                    }}
-                  >
-                    {item.title}
-                  </Card.Title>
-                  <Card.Text>{item.category}</Card.Text>
-                  <Card.Text style={{ fontSize: "25px" }}>
-                    ${item.price}
-                  </Card.Text>
-                </Card.Body>
-              </Link>
-            </Card>
-          );
-        })}
+              <Card.Body>
+                <Card.Title
+                  style={{
+                    fontFamily: "serif",
+                    fontSize: "25px",
+                  }}
+                >
+                  {item.title}
+                </Card.Title>
+                <Card.Text>{item.category}</Card.Text>
+                <Card.Text style={{ fontSize: "25px" }}>
+                  ${item.price}
+                </Card.Text>
+              </Card.Body>
+            </Link>
+          </Card>
+        ))}
       </div>
     </div>
   );

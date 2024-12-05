@@ -24,6 +24,9 @@ function App() {
   const [showhome, setshowhome] = useState(true);
   const [itemId, setitemId] = useState([]);
   const [cart, setCart] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       setuser(user);
@@ -46,6 +49,10 @@ function App() {
           setitemId,
           cart,
           setCart,
+          searchQuery,
+          setSearchQuery,
+          searchResults,
+          setSearchResults,
         }}
       >
         <BrowserRouter>
@@ -55,7 +62,7 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={user ? <Navigate to="/home" /> : <Login />}
+              element={user ? <Navigate to="/home" /> : ""}
             ></Route>
             <Route path="/signin" element={<SignIn />}></Route>
             <Route path="/login" element={<Login />}></Route>

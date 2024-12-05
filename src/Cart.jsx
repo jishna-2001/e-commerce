@@ -1,12 +1,80 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { exampleContext } from "./App";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function Cart() {
-  const { cart, setshownav, setshownewnav } = useContext(exampleContext);
+  const { cart, setCart, setshownav, setshownewnav } =
+    useContext(exampleContext);
+
+  // State to track order confirmation
+  const [orderConfirmed, setOrderConfirmed] = useState(false);
+
+  // Update navigation visibility
   setshownav(false);
   setshownewnav(false);
+
+  // Handle order confirmation
+  const handleOrderConfirmation = () => {
+    setOrderConfirmed(true); // Set order as confirmed
+    setCart([]); // Clear the cart
+  };
+
+  if (orderConfirmed) {
+    return (
+      <div
+        style={{
+          padding: "60px",
+          textAlign: "center",
+          color: "#28a745",
+          background: "linear-gradient(45deg, #6a11cb 0%, #2575fc 100%)",
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
+        <h3
+          style={{
+            fontSize: "36px",
+            fontWeight: "700",
+            color: "#fff",
+            marginBottom: "20px",
+          }}
+        >
+          Thank you for shopping with us!
+        </h3>
+        <p
+          style={{
+            fontSize: "18px",
+            color: "#fff",
+            marginBottom: "30px",
+            fontWeight: "300",
+          }}
+        >
+          Your order has been placed successfully. We hope you enjoy your
+          purchase!
+        </p>
+        <Link to="/service">
+          <Button
+            variant="primary"
+            style={{
+              padding: "15px 40px",
+              fontSize: "20px",
+              borderRadius: "25px",
+              background: "#f1c40f",
+              color: "#fff",
+              border: "none",
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
+            }}
+          >
+            Continue Shopping
+          </Button>
+        </Link>
+      </div>
+    );
+  }
+
   if (cart.length === 0) {
     return (
       <div style={{ padding: "60px", textAlign: "center", color: "#6c757d" }}>
@@ -85,19 +153,18 @@ function Cart() {
         </div>
 
         <div style={{ textAlign: "center", marginTop: "40px" }}>
-          <Link to={"/payment"}>
-            <Button
-              variant="success"
-              style={{
-                padding: "12px 30px",
-                fontSize: "18px",
-                borderRadius: "25px",
-                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-              }}
-            >
-              Proceed to Buy
-            </Button>
-          </Link>
+          <Button
+            variant="success"
+            style={{
+              padding: "12px 30px",
+              fontSize: "18px",
+              borderRadius: "25px",
+              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+            }}
+            onClick={handleOrderConfirmation}
+          >
+            Confirm Order
+          </Button>
         </div>
       </div>
     </div>

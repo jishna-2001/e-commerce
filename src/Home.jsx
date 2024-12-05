@@ -137,6 +137,7 @@ function Home() {
           got you covered.
         </p>
       </div>
+      {/* Footer section */}
       <footer
         style={{
           backgroundColor: "#1f2a44",
